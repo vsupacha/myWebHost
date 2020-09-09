@@ -51,7 +51,7 @@
       navigator.geolocation.getCurrentPosition(showPosition);
       let accelerometer = new Accelerometer({ referenceFrame: 'device' });
       accelerometer.addEventListener('reading', e => {
-        page.querySelector('#accel').innerHTML = "X: " + accelerometer.x + ", Y: " + accelerometer.y + ", Z: " + accelerometer.x; 
+        page.querySelector('#accel').innerHTML = "X: " + accelerometer.x.toFixed(2) + ", Y: " + accelerometer.y.toFixed(2) + ", Z: " + accelerometer.z.toFixed(2); 
       });
       accelerometer.start();
     } else { 
