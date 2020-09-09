@@ -27,6 +27,7 @@
       <div class="center"></div>
     </ons-toolbar>
     <p id="latlng">This is the second page.</p>
+    <p id="accel">This is another second page.</p>
   </ons-page>
 </template>
 <script>
@@ -45,6 +46,11 @@
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
+      let accelerometer = new Accelerometer({ referenceFrame: 'device' });
+      accelerometer.addEventListener('reading', e => {
+        page.querySelector('#accel').innerHTML = "X: " + accelerometer.x + ", Y: " + accelerometer.y + ", Z: " + accelerometer.x; 
+      });
+      accelerometer.start();
     } else { 
       page.querySelector('#latlng').innerHTML = "Geolocation is not supported by this browser.";
     }    
