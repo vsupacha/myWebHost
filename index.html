@@ -58,6 +58,9 @@
           });
         }
       }).catch(console.error);
+      window.addEventListener('devicemotion', (ev) => {
+        page.querySelector('#devMotion').innerHTML = "X: " + ev.acceleration.x.toFixed(2) + ", Y: " + ev.acceleration.y.toFixed(2) + ", Z: " + ev.acceleration.z.toFixed(2); 
+      });
   
       let accelerometer = new Accelerometer({ referenceFrame: 'device' });
       accelerometer.addEventListener('error', event => {
