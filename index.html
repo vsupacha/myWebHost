@@ -50,9 +50,15 @@
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-      window.addEventListener('devicemotion', function(ev) {
-        page.querySelector('#devMotion').innerHTML = "X: " + ev.acceleration.x.toFixed(2) + ", Y: " + ev.acceleration.y.toFixed(2) + ", Z: " + ev.acceleration.z.toFixed(2); 
-      });      
+      
+      DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+          window.addEventListener('devicemotion', (e) => {
+            page.querySelector('#devMotion').innerHTML = "X: " + ev.acceleration.x.toFixed(2) + ", Y: " + ev.acceleration.y.toFixed(2) + ", Z: " + ev.acceleration.z.toFixed(2); 
+          });
+        }
+      }).catch(console.error);
+  
       let accelerometer = new Accelerometer({ referenceFrame: 'device' });
       accelerometer.addEventListener('error', event => {
         // Handle runtime errors.
