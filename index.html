@@ -50,8 +50,8 @@
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-      window.addEventListener('devicemotion', function(event) {
-        page.querySelector('#devMotion').innerHTML = "X: " + event.acceleration.x.toFixed(2) + ", Y: " + event.acceleration.y.toFixed(2) + ", Z: " + event.acceleration.z.toFixed(2); 
+      window.addEventListener('devicemotion', function(ev) {
+        page.querySelector('#devMotion').innerHTML = "X: " + ev.acceleration.x + ", Y: " + ev.acceleration.y + ", Z: " + ev.acceleration.z; 
       });      
       let accelerometer = new Accelerometer({ referenceFrame: 'device' });
       accelerometer.addEventListener('error', event => {
