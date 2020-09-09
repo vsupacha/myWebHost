@@ -53,7 +53,7 @@
       
       DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
-          window.addEventListener('devicemotion', (e) => {
+          window.addEventListener('devicemotion', (ev) => {
             page.querySelector('#devMotion').innerHTML = "X: " + ev.acceleration.x.toFixed(2) + ", Y: " + ev.acceleration.y.toFixed(2) + ", Z: " + ev.acceleration.z.toFixed(2); 
           });
         }
