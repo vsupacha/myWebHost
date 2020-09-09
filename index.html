@@ -31,6 +31,7 @@
     </ons-toolbar>
     <p id="latlng">This is the second page.</p>
     <p id="accel">This is another second page.</p>
+    <p id="devMotion">This is other second page.</p>
   </ons-page>
 </template>
 <script>
@@ -49,6 +50,9 @@
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
+      window.addEventListener('devicemotion', function(event) {
+        page.querySelector('#devMotion').innerHTML = "X: " + event.acceleration.x.toFixed(2) + ", Y: " + event.acceleration.y.toFixed(2) + ", Z: " + event.acceleration.z.toFixed(2); 
+      });      
       let accelerometer = new Accelerometer({ referenceFrame: 'device' });
       accelerometer.addEventListener('error', event => {
         // Handle runtime errors.
